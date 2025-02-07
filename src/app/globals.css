@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --background: hsla(0, 0%, 0%, 1);
+  --white-primary: hsla(0, 0%, 98%, 1);
+  --gray-primary: hsla(0, 0%, 53%, 1);
+  --accent-primary: hsla(9, 64%, 51%, 1);
+  --accent-secondary: hsl(42, 98%, 59%, 1);
+}
+
+@layer base {
+  h1 {
+    @apply text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-5xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  p {
+    @apply text-base font-normal;
+  }
+
+  blockquote {
+    @apply text-base font-normal;
+  }
+}
