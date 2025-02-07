@@ -34,7 +34,7 @@
   }
 
   p {
-    @apply text-base font-normal text-grey;
+    @apply text-base font-normal text-white opacity-80;
   }
 
   blockquote {
