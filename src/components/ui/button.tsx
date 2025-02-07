@@ -7,6 +7,7 @@ const buttonVariants = cva("px-6 py-2 font-medium", {
     variant: {
       default: "bg-black text-white dark:bg-white dark:text-black",
       destructive: "bg-red-500 text-white",
+      ghost: "bg-transparent text-black dark:text-white px-0",
     },
     rounded: {
       md: "rounded",
