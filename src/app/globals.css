@@ -3,20 +3,20 @@
 @tailwind utilities;
 
 :root {
-  --background: hsla(0, 0%, 100%, 1);
-  --white-primary: hsla(0, 0%, 2%, 1);
-  --gray-primary: hsla(0, 0%, 47%, 1);
+  --white: hsla(0, 0%, 100%, 1);
+  --black: hsla(0, 0%, 2%, 1);
+  --grey: hsla(0, 0%, 47%, 1);
   --accent-primary: hsla(9, 64%, 51%, 1);
   --accent-secondary: hsl(42, 98%, 59%, 1);
+
+  --background: var(--white);
+  --text: var(--black);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: hsla(0, 0%, 0%, 1);
-    --white-primary: hsla(0, 0%, 98%, 1);
-    --gray-primary: hsla(0, 0%, 53%, 1);
-    --accent-primary: hsla(9, 64%, 51%, 1);
-    --accent-secondary: hsl(42, 98%, 59%, 1);
+    --background: var(--black);
+    --text: var(--white);
   }
 }
 
@@ -44,6 +44,6 @@
 
 body {
   background-color: var(--background);
-  color: var(--white-primary);
+  color: var(--text);
   font-family: "Inter", serif;
 }
