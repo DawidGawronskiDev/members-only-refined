@@ -1,4 +1,5 @@
 import Background from "@/components/background";
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionHow from "@/components/section-how";
 import SectionTestimonials from "@/components/section-testimonials";
@@ -14,6 +15,7 @@ export default function Home() {
       <SectionHow />
       <SectionWhy />
       <SectionTestimonials />
+      <Footer />
     </div>
   );
 }
