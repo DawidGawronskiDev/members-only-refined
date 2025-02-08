@@ -1,8 +1,8 @@
 export default function Background() {
   return (
-    <div className="w-full absolute h-4 bg-green-300 z-[-1]">
-      <div className="w-[1300px] aspect-square rounded-full bg-accentPrimary absolute left-1/2 -translate-x-[calc(50%-400px)] top-0" />
-      <div className="w-[940px] aspect-square rounded-full bg-accentSecondary absolute left-1/2 -translate-x-[calc(50%+300px)] top-0" />
+    <div className="absolute h-full z-[-1] w-dvw overflow-hidden">
+      <div className="w-[940px] aspect-square rounded-full bg-accentSecondary absolute left-1/2 -translate-x-[calc(50%+400px)] -top-[500px] blur-[200px] transform-gpu" />
+      <div className="w-[1300px] aspect-square rounded-full bg-accentPrimary absolute left-1/2 -translate-x-[calc(50%-400px)] -top-[400px] blur-[200px] transform-gpu" />
     </div>
   );
 }
