@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/header";
+import Footer from "@/components/footer";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
@@ -20,7 +22,11 @@ export default function RootLayout({
         className={`${inter.variable} antialiased bg-[center_-1000px] bg-no-repeat`}
         style={{ backgroundImage: "url('/background-lights.png')" }}
       >
-        {children}
+        <div className="flex flex-col gap-32">
+          <Header />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
