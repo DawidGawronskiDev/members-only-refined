@@ -13,6 +13,7 @@ export default function Logo() {
       alt="Logo"
       width={42}
       height={42}
+      suppressHydrationWarning
     />
   );
 }
