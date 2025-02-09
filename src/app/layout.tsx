@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} antialiased bg-[center_-1000px] bg-no-repeat`}
         style={{ backgroundImage: "url('/background-lights.png')" }}
