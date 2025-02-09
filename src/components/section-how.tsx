@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import MaxWidth from "@/components/ui/max-width";
 
 export default function SectionHow() {

@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import MaxWidth from "@/components/ui/max-width";
 
 export default function SectionWelcome() {
@@ -16,7 +16,7 @@ export default function SectionWelcome() {
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <Button rounded="full">Sign Up</Button>
+              <Button>Sign Up</Button>
               <p>or</p>
               <Button variant="ghost">Sign In</Button>
             </div>

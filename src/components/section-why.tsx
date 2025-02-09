@@ -40,7 +40,7 @@ export function Card({
   image: string;
 }) {
   return (
-    <div className="flex flex-col items-center gap-4 w-full h-full border border-gray-100/10 p-4 rounded-2xl bg-gray-100/5 shadow-sm">
+    <div className="flex flex-col items-center gap-4 w-full h-full border border-gray-900/10 dark:border-gray-100/10 p-4 rounded-2xl bg-gray-100/5 shadow-sm">
       <Image src={image} alt="" width={20} height={20} />
       <div className="text-center">
         <h3>{title}</h3>
