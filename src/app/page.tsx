@@ -1,4 +1,3 @@
-import Background from "@/components/background";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
 import SectionHow from "@/components/section-how";
@@ -9,7 +8,6 @@ import SectionWhy from "@/components/section-why";
 export default function Home() {
   return (
     <div className="flex flex-col gap-32">
-      {/* <Background /> */}
       <Header />
       <SectionWelcome />
       <SectionHow />
