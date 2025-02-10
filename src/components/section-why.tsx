@@ -1,5 +1,8 @@
 import MaxWidth from "@/components/ui/max-width";
-import Image from "next/image";
+import { type ElementType } from "react";
+import SparkleIcon from "@/components/icons/sparkle-icon";
+import ShieldIcon from "@/components/icons/shield-icon";
+import UsersIcon from "@/components/icons/users-icon";
 
 export default function SectionWhy() {
   return (
@@ -11,17 +14,17 @@ export default function SectionWhy() {
             <Card
               title="Exclusive Access"
               description="Not everyone gets in."
-              image="/sparkle.svg"
+              Image={SparkleIcon}
             />
             <Card
               title="Privacy First"
               description="No public visibility, no distractions."
-              image="/shield.svg"
+              Image={ShieldIcon}
             />
             <Card
               title="Community Focused"
               description="Quality over quantity."
-              image="/users-round.svg"
+              Image={UsersIcon}
             />
           </div>
         </div>
@@ -33,15 +36,15 @@ export default function SectionWhy() {
 export function Card({
   title,
   description,
-  image,
+  Image,
 }: {
   title: string;
   description: string;
-  image: string;
+  Image: ElementType;
 }) {
   return (
     <div className="flex flex-col items-center gap-4 w-full h-full border border-gray-900/10 dark:border-gray-100/10 p-4 rounded-2xl bg-gray-100/5 shadow-sm">
-      <Image src={image} alt="" width={20} height={20} />
+      <Image alt="" />
       <div className="text-center">
         <h3>{title}</h3>
         <p className="font-extralight">{description}</p>

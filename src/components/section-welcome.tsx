@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import MaxWidth from "@/components/ui/max-width";
+import Link from "next/link";
 
 export default function SectionWelcome() {
   return (
@@ -16,7 +17,9 @@ export default function SectionWelcome() {
               </p>
             </div>
             <div className="flex items-center gap-6">
-              <Button>Sign Up</Button>
+              <Link href="/signup">
+                <Button>Sign Up</Button>
+              </Link>
               <p>or</p>
               <Button variant="ghost">Sign In</Button>
             </div>
