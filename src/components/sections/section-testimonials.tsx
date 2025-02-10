@@ -1,4 +1,4 @@
-import MaxWidth from "./ui/max-width";
+import MaxWidth from "../ui/max-width";
 
 export default function SectionTestimonials() {
   return (
