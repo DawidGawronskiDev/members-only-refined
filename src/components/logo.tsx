@@ -2,18 +2,26 @@
 
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Logo() {
+  const [, setMounted] = useState(false);
   const { resolvedTheme } = useTheme();
-  console.log(resolvedTheme);
+
+  useEffect(() => {
+    setMounted(true);
+  }, [resolvedTheme]);
 
   return (
-    <Image
-      src={`/logo-${resolvedTheme === "dark" ? "light" : "dark"}.svg`}
-      alt="Logo"
-      width={42}
-      height={42}
-      suppressHydrationWarning
-    />
+    <Link href="/">
+      <Image
+        src={`/logo-${resolvedTheme === "dark" ? "light" : "dark"}.svg`}
+        alt="Logo"
+        width={42}
+        height={42}
+        suppressHydrationWarning
+      />
+    </Link>
   );
 }
