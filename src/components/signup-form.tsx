@@ -13,14 +13,26 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { auth, googleProvider } from "@/lib/firebase";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { useState } from "react";
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-  confirmPassword: z.string().min(8),
-});
+const formSchema = z
+  .object({
+    email: z.string().email(),
+    password: z.string().min(8),
+    confirmPassword: z.string().min(8),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
 
 export default function SignUpForm() {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,8 +43,37 @@ export default function SignUpForm() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
+
+    createUserWithEmailAndPassword(auth, values.email, values.password)
+      .then(() => {
+        setSuccess(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }
+
+  const handleGoogleSignIn = () => {
+    setLoading(true);
+    setError(null);
+
+    signInWithPopup(auth, googleProvider)
+      .then(() => {
+        setSuccess(true);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
 
   return (
     <Form {...form}>
@@ -74,19 +115,23 @@ export default function SignUpForm() {
             <FormItem>
               <FormLabel>Confirm password</FormLabel>
               <FormControl>
-                <Input
-                  type="confirmPassword"
-                  placeholder="********"
-                  {...field}
-                />
+                <Input type="password" placeholder="********" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
+
         <Button type="submit" className="w-full">
-          Submit
+          {loading ? "Loading..." : "Sign Up"}
         </Button>
+        <Button type="button" onClick={handleGoogleSignIn}>
+          Sign in with Google
+        </Button>
+        {error && <p className="text-red-500">{error}</p>}
+        {success && (
+          <p className="text-green-500">Account created successfully!</p>
+        )}
       </form>
     </Form>
   );
