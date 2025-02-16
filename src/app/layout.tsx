@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/store/auth-context";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
@@ -29,11 +30,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="flex flex-col gap-32">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <AuthProvider>
+            <div className="flex flex-col gap-32">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>
