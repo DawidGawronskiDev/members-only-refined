@@ -11,23 +11,23 @@ import {
 import { auth } from "@/lib/firebase";
 
 interface AuthContextType {
-  user: User | null;
+  currentUser: User | null;
   logout: () => Promise<void>;
   loginWithGoogle: () => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType>({
-  user: null,
+  currentUser: null,
   logout: async () => {},
   loginWithGoogle: async () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setCurrentUser(user);
     });
 
     return () => unsubscribe();
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, logout, loginWithGoogle }}>
+    <AuthContext.Provider value={{ currentUser, logout, loginWithGoogle }}>
       {children}
     </AuthContext.Provider>
   );
