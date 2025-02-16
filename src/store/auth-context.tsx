@@ -6,9 +6,11 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   signOut,
+  type ParsedToken,
   type User,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase-client";
+import { removeTokens, setTokens } from "@/actions/cookies";
 
 interface AuthContextType {
   currentUser: User | null;
@@ -24,10 +26,29 @@ export const AuthContext = createContext<AuthContextType>({
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [customClaims, setCustomClaims] = useState<ParsedToken | null>(null);
+
+  const handleAuthChange = async (user: User | null) => {
+    if (user) {
+      const tokenResult = await user.getIdTokenResult();
+      const token = tokenResult.token;
+      const refreshToken = user.refreshToken;
+
+      const claims = tokenResult.claims;
+      setCustomClaims(claims ?? null);
+
+      if (token && refreshToken) {
+        await setTokens({ token, refreshToken });
+      }
+    } else {
+      await removeTokens();
+    }
+  };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
+      handleAuthChange(user);
     });
 
     return () => unsubscribe();
