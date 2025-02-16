@@ -13,8 +13,8 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { auth, googleProvider } from "@/lib/firebase";
-import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
 const formSchema = z
@@ -58,22 +58,6 @@ export default function SignUpForm() {
         setLoading(false);
       });
   }
-
-  const handleGoogleSignIn = () => {
-    setLoading(true);
-    setError(null);
-
-    signInWithPopup(auth, googleProvider)
-      .then(() => {
-        setSuccess(true);
-      })
-      .catch((error) => {
-        setError(error.message);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
 
   return (
     <Form {...form}>
@@ -124,9 +108,6 @@ export default function SignUpForm() {
 
         <Button type="submit" className="w-full">
           {loading ? "Loading..." : "Sign Up"}
-        </Button>
-        <Button type="button" onClick={handleGoogleSignIn}>
-          Sign in with Google
         </Button>
         {error && <p className="text-red-500">{error}</p>}
         {success && (
