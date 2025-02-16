@@ -13,7 +13,7 @@ import {
 } from "./ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { auth } from "@/lib/firebase";
+import { auth } from "@/lib/firebase-client";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
