@@ -32,6 +32,12 @@ const UserMenu = () => {
             <DropdownMenuContent>
               <DropdownMenuLabel>Profile</DropdownMenuLabel>
               <DropdownMenuSeparator />
+              {auth.customClaims?.admin ? (
+                <DropdownMenuItem>
+                  <Link href="/admin-dashboard">Admin Dashboard</Link>
+                </DropdownMenuItem>
+              ) : null}
+
               <DropdownMenuItem onClick={() => auth.logout()}>
                 Log out
               </DropdownMenuItem>

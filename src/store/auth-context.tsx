@@ -36,12 +36,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       const token = tokenResult.token;
       const refreshToken = user.refreshToken;
 
-      const claims = tokenResult.claims;
-      setCustomClaims(claims ?? null);
-
       if (token && refreshToken) {
         await setTokens({ token, refreshToken });
       }
+
+      const claims = tokenResult.claims;
+      setCustomClaims(claims ?? null);
     } else {
       await removeTokens();
     }
