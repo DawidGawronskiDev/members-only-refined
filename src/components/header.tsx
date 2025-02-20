@@ -1,7 +1,7 @@
 import MaxWidth from "@/components/ui/max-width";
 import Logo from "@/components/logo";
 import UserMenu from "@/components/user-menu";
-import Link from "next/link";
+import MessagesAccess from "@/components/messages-access";
 
 export default function Header() {
   return (
@@ -15,7 +15,7 @@ export default function Header() {
             <nav>
               <ul>
                 <li className="text-sm">
-                  <Link href="/messages">Messages</Link>
+                  <MessagesAccess />
                 </li>
               </ul>
             </nav>

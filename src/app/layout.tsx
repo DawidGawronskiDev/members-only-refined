@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AuthProvider } from "@/store/auth-context";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
               {children}
               <Footer />
             </div>
+            <Toaster />
           </AuthProvider>
         </ThemeProvider>
       </body>
