@@ -1,6 +1,7 @@
 import MaxWidth from "@/components/ui/max-width";
 import Logo from "@/components/logo";
 import UserMenu from "@/components/user-menu";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -13,7 +14,9 @@ export default function Header() {
           <div className="w-full flex items-center justify-center">
             <nav>
               <ul>
-                <li className="text-sm">Messages</li>
+                <li className="text-sm">
+                  <Link href="/messages">Messages</Link>
+                </li>
               </ul>
             </nav>
           </div>
