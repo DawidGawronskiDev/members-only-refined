@@ -13,21 +13,49 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import messageFormSchema from "@/validation/message";
+import addMessage from "@/actions/add-message";
+import { getAuth } from "firebase/auth";
+import { useToast } from "@/hooks/use-toast";
 
-const formSchema = z.object({
-  message: z.string().min(1),
-});
+const MessageCreateForm = ({ onClose }: { onClose: () => void }) => {
+  const { toast } = useToast();
+  const auth = getAuth();
 
-const MessageCreateForm = () => {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof messageFormSchema>>({
+    resolver: zodResolver(messageFormSchema),
     defaultValues: {
       message: "",
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+  const onSubmit = async (values: z.infer<typeof messageFormSchema>) => {
+    const token = await auth.currentUser?.getIdToken();
+
+    if (!token) {
+      toast({
+        title: "Oops!",
+        description: "Failed to verify token.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const resposne = await addMessage({ data: { ...values }, token });
+
+    if (resposne.error) {
+      toast({
+        title: "Oops!",
+        description: "Failed to send message.",
+        variant: "destructive",
+      });
+    } else {
+      toast({
+        title: "Success!",
+        description: "Message sent successfully!",
+      });
+      onClose();
+    }
   };
 
   return (
@@ -46,7 +74,13 @@ const MessageCreateForm = () => {
             </FormItem>
           )}
         />
-        <Button className="w-full">Send</Button>
+        <Button
+          type="submit"
+          disabled={form.formState.isSubmitting}
+          className="w-full"
+        >
+          {form.formState.isSubmitting ? "Sending..." : "Send Message"}
+        </Button>
       </form>
     </Form>
   );
