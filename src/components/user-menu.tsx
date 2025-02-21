@@ -20,7 +20,7 @@ const UserMenu = () => {
       {auth.currentUser ? (
         <div>
           <DropdownMenu>
-            <DropdownMenuTrigger>
+            <DropdownMenuTrigger asChild>
               <Image
                 width={32}
                 height={32}

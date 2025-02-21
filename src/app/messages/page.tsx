@@ -7,17 +7,19 @@ const Messages = async () => {
   return (
     <MaxWidth>
       <MessagesProvider>
-        <div className="text-center space-y-4">
-          <div>
-            <h2>Your Private Space</h2>
-            <p className="max-w-prose mx-auto">
-              Welcome to the members-only discussion board. Share your thoughts
-              and connect with others in a secure environment.
-            </p>
+        <div className="space-y-4">
+          <div className="text-center space-y-4">
+            <div>
+              <h2>Your Private Space</h2>
+              <p className="max-w-prose mx-auto">
+                Welcome to the members-only discussion board. Share your
+                thoughts and connect with others in a secure environment.
+              </p>
+            </div>
+            <MessageDialog />
           </div>
-          <MessageDialog />
+          <MessagesList />
         </div>
-        <MessagesList />
       </MessagesProvider>
     </MaxWidth>
   );

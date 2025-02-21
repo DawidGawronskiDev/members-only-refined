@@ -8,18 +8,12 @@ import {
   ReactNode,
   useContext,
 } from "react";
-
-interface Message {
-  id: string;
-  message: string;
-  user: {
-    name?: string;
-  } | null;
-}
+import { MessageType } from "@/types";
 
 interface MessagesContextType {
-  messages: Message[];
-  handleCreateMessage: (message: Message) => void;
+  messages: MessageType[];
+  handleCreateMessage: () => Promise<void>;
+  isLoading: boolean;
 }
 
 const MessagesContext = createContext<MessagesContextType | undefined>(
@@ -27,23 +21,31 @@ const MessagesContext = createContext<MessagesContextType | undefined>(
 );
 
 const MessagesProvider = ({ children }: { children: ReactNode }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<MessageType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleCreateMessage = (message: Message) => {
-    setMessages((prev) => [...prev, message]);
+  const handleCreateMessage = async () => {
+    setIsLoading(true);
+    const updatedMessages = await getMessages();
+    setMessages(updatedMessages);
+    setIsLoading(false);
   };
 
   useEffect(() => {
     const getData = async () => {
+      setIsLoading(true);
       const data = await getMessages();
       setMessages(data);
+      setIsLoading(false);
     };
 
     getData();
   }, []);
 
   return (
-    <MessagesContext.Provider value={{ messages, handleCreateMessage }}>
+    <MessagesContext.Provider
+      value={{ messages, handleCreateMessage, isLoading }}
+    >
       {children}
     </MessagesContext.Provider>
   );

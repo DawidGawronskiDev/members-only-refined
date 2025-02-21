@@ -28,9 +28,12 @@ const addMessage = async ({
     };
   }
 
+  const now = new Date();
   await addDoc(collection(db, "messages"), {
     message: validation.data.message,
     user: verifiedToken.uid,
+    created: now.toISOString(),
+    updated: now.toISOString(),
   });
 
   return {

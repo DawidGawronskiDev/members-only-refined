@@ -17,8 +17,10 @@ import messageFormSchema from "@/validation/message";
 import addMessage from "@/actions/add-message";
 import { getAuth } from "firebase/auth";
 import { useToast } from "@/hooks/use-toast";
+import { useMessages } from "@/store/messages-context";
 
 const MessageCreateForm = ({ onClose }: { onClose: () => void }) => {
+  const { handleCreateMessage } = useMessages();
   const { toast } = useToast();
   const auth = getAuth();
 
@@ -42,6 +44,7 @@ const MessageCreateForm = ({ onClose }: { onClose: () => void }) => {
     }
 
     const resposne = await addMessage({ data: { ...values }, token });
+    await handleCreateMessage();
 
     if (resposne.error) {
       toast({

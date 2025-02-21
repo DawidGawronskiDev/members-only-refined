@@ -22,7 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} antialiased bg-[center_-1000px] bg-no-repeat`}
+        className={`${inter.variable} antialiased bg-[center_-1000px] bg-no-repeat min-h-screen`}
         style={{ backgroundImage: "url('/background-lights.png')" }}
       >
         <ThemeProvider

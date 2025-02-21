@@ -1,3 +1,5 @@
+import { Avatar } from "@/components/avatar";
+
 const TESTIMONIALS = [
   {
     quote:
@@ -71,7 +73,7 @@ const Testimonial = ({ quote, author }: { quote: string; author: string }) => {
     <div className="flex flex-col gap-2 border border-gray-900/10 dark:border-gray-100/10 p-4 rounded-2xl dark:bg-gray-100/5 shadow-sm">
       <blockquote className="font-extralight">{quote}</blockquote>
       <div className="flex gap-3">
-        <div className="w-8 aspect-square rounded-full from-orange-600 to-black bg-gradient-to-br"></div>
+        <Avatar />
         <p className="opacity-100 font-bold">{author}</p>
       </div>
     </div>

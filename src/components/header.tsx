@@ -2,6 +2,7 @@ import MaxWidth from "@/components/ui/max-width";
 import Logo from "@/components/logo";
 import UserMenu from "@/components/user-menu";
 import MessagesAccess from "@/components/messages-access";
+import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Header() {
   return (
@@ -20,7 +21,8 @@ export default function Header() {
               </ul>
             </nav>
           </div>
-          <div className="w-full flex items-center justify-end">
+          <div className="w-full flex items-center justify-end gap-2">
+            <ModeToggle />
             <UserMenu />
           </div>
         </div>
