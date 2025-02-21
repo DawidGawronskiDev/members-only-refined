@@ -29,7 +29,7 @@ const addMessage = async ({
   }
 
   await addDoc(collection(db, "messages"), {
-    nessage: validation.data.message,
+    message: validation.data.message,
     user: verifiedToken.uid,
   });
 
