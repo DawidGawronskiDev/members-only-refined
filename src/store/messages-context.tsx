@@ -1,7 +1,6 @@
 "use client";
 
-import { db } from "@/lib/firebase-client";
-import { collection, getDocs } from "firebase/firestore";
+import { getMessages } from "@/actions/get-messages";
 import {
   createContext,
   useEffect,
@@ -13,7 +12,9 @@ import {
 interface Message {
   id: string;
   message: string;
-  user: string;
+  user: {
+    name?: string;
+  } | null;
 }
 
 interface MessagesContextType {
@@ -33,20 +34,12 @@ const MessagesProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    const getMessages = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, "messages"));
-        const fetchedMessages = querySnapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        console.log(fetchedMessages);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
+    const getData = async () => {
+      const data = await getMessages();
+      setMessages(data);
     };
 
-    getMessages();
+    getData();
   }, []);
 
   return (
