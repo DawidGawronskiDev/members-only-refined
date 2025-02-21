@@ -15,6 +15,7 @@ export const Avatar = () => {
         backgroundImage: `linear-gradient(to bottom right, ${from}, ${to})`,
       }}
       className={`w-8 h-8 rounded-full`}
+      suppressHydrationWarning
     ></div>
   );
 };
