@@ -1,3 +1,4 @@
+import { User } from "@/app/generated/prisma";
 import prisma from "@/lib/prisma";
 import { compare } from "bcrypt";
 import NextAuth, { NextAuthOptions } from "next-auth";
@@ -27,8 +28,6 @@ export const authOptions: NextAuthOptions = {
           where: { username: credentials.username },
         });
 
-        console.log("user", user);
-
         if (!user) {
           return null;
         }
@@ -38,19 +37,43 @@ export const authOptions: NextAuthOptions = {
           user.password
         );
 
-        console.log("password", isPasswordValid);
-
         if (!isPasswordValid) {
           return null;
         }
 
         return {
-          ...user,
           id: user.id + "",
+          username: user.username,
+          isMember: user.isMember,
         };
       },
     }),
   ],
+  callbacks: {
+    session({ session, token }) {
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: token.id,
+          username: token.username,
+          isMember: token.isMember,
+        },
+      };
+    },
+    jwt({ token, user }) {
+      if (user) {
+        const u = user as unknown as User;
+        return {
+          ...token,
+          id: u.id,
+          username: u.username,
+          isMember: u.isMember,
+        };
+      }
+      return token;
+    },
+  },
   secret: process.env.AUTH_SECRET!,
 };
 
