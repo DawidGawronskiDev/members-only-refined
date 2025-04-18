@@ -2,8 +2,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../api/auth/[...nextauth]/route";
 import { redirect } from "next/navigation";
 import { User } from "../generated/prisma";
+import Posts from "./posts";
 
-export default async function Posts() {
+export default async function PostsPage() {
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -19,6 +20,7 @@ export default async function Posts() {
   return (
     <div>
       <pre>{JSON.stringify(session)}</pre>
+      <Posts />
     </div>
   );
 }
