@@ -11,10 +11,10 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
+import SubmitButton from "./submit-button";
 
 const membershipShema = z.object({
   key: z.string().min(1),
@@ -29,6 +29,10 @@ export default function MembershipForm() {
       key: "",
     },
   });
+
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const onSubmit = async (values: z.infer<typeof membershipShema>) => {
     try {
@@ -69,9 +73,7 @@ export default function MembershipForm() {
             </FormItem>
           )}
         />
-        <Button disabled={form.formState.isSubmitting} className="w-full">
-          {form.formState.isSubmitting ? "Loading..." : "Become a Member"}
-        </Button>
+        <SubmitButton isSubmitting={isSubmitting} content="Become a Member" />
       </form>
     </Form>
   );
