@@ -76,7 +76,9 @@ export async function POST(request: Request) {
       },
     });
 
-    return NextResponse.json({ data: { isMember: true } }, { status: 200 });
+    const updatedUser = { ...existingUser, isMember: true } as User;
+
+    return NextResponse.json({ data: updatedUser }, { status: 200 });
   } catch (e) {
     return NextResponse.json(
       { error: { message: "Internal server error" } },

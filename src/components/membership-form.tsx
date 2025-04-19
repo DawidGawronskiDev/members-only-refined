@@ -21,6 +21,8 @@ const membershipShema = z.object({
 });
 
 export default function MembershipForm() {
+  const { update } = useSession();
+
   const form = useForm<z.infer<typeof membershipShema>>({
     resolver: zodResolver(membershipShema),
     defaultValues: {
@@ -45,6 +47,7 @@ export default function MembershipForm() {
         return;
       }
 
+      await update(result.data);
       toast.success("Thanks for being a member!");
     } catch (error) {
       toast.error("Oops! Something went wrong...");
