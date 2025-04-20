@@ -8,7 +8,7 @@ export default async function PostsPage() {
   if (!isMember) redirect("/");
 
   return (
-    <div>
+    <div className="my-16">
       <MaxWidthContanier>
         <div className="space-y-8">
           <div className="flex flex-col items-center justify-center text-center gap-4">

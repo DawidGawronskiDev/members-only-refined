@@ -5,30 +5,37 @@ import MaxWidthContanier from "./max-width-container";
 import SignInButton from "./signin-button";
 import { useSession } from "next-auth/react";
 import SignOutButton from "./signout";
+import { ThemeToggle } from "./theme-toggle";
+import Logo from "./logo";
 
 export default function Header() {
   const session = useSession();
+  const user = session.data?.user;
 
   return (
-    <header className="sticky top-0 left-0 py-4">
+    <header className="sticky top-0 left-0 z-50 py-4 bg-background backdrop-blur supports-[backdrop-filter]:bg-background/5">
       <MaxWidthContanier>
         <div className="flex items-center justify-between *:flex-1">
           <div>
-            <Link href={"/"}>
-              <div className="w-8 h-8 rounded-full bg-gray-500"></div>
-            </Link>
+            <Logo />
           </div>
           <div className="text-center">
             <nav>
               <ul>
                 <li>
-                  <Link href={"/posts"}>Posts</Link>
+                  <Link
+                    href={"/posts"}
+                    onClick={(e) => (!user ? e.preventDefault() : null)}
+                  >
+                    Posts
+                  </Link>
                 </li>
               </ul>
             </nav>
           </div>
-          <div className="text-right">
-            {!session.data?.user ? <SignInButton /> : <SignOutButton />}
+          <div className="text-right flex items-center justify-end gap-2">
+            <ThemeToggle />
+            {!user ? <SignInButton /> : <SignOutButton />}
           </div>
         </div>
       </MaxWidthContanier>
