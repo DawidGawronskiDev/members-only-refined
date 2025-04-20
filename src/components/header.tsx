@@ -1,8 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import MaxWidthContanier from "./max-width-container";
 import SignInButton from "./signin-button";
+import { useSession } from "next-auth/react";
+import SignOutButton from "./signout";
 
 export default function Header() {
+  const session = useSession();
+
   return (
     <header className="sticky top-0 left-0 py-4">
       <MaxWidthContanier>
@@ -22,7 +28,7 @@ export default function Header() {
             </nav>
           </div>
           <div className="text-right">
-            <SignInButton />
+            {!session.data?.user ? <SignInButton /> : <SignOutButton />}
           </div>
         </div>
       </MaxWidthContanier>

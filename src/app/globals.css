@@ -126,6 +126,6 @@
     @apply text-5xl font-extrabold;
   }
   p {
-    @apply opacity-50 max-w-prose;
+    @apply opacity-50 max-w-prose break-all;
   }
 }

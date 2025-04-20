@@ -13,8 +13,11 @@ import { Input } from "./ui/input";
 import SubmitButton from "./submit-button";
 import { postSchema } from "@/schemas";
 import { toast } from "sonner";
+import { usePosts } from "@/providers/posts";
 
 export default function PostForm() {
+  const { refetch } = usePosts();
+
   const form = useForm<z.infer<typeof postSchema>>({
     resolver: zodResolver(postSchema),
     defaultValues: {
@@ -33,12 +36,11 @@ export default function PostForm() {
         body: JSON.stringify(values),
       });
 
-      const result = await response.json();
-
       if (!response.ok) {
         throw new Error();
       }
 
+      refetch();
       toast.success("Post created successfully");
     } catch (e) {
       console.log(e);

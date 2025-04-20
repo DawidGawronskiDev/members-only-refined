@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 
 export default function SignInButton() {
   const session = useSession();
@@ -12,7 +12,7 @@ export default function SignInButton() {
   }
 
   return (
-    <Button variant="ghost" className="rounded-full">
+    <Button variant="ghost" onClick={() => signIn()} className="rounded-full">
       Sign In <ArrowRight />
     </Button>
   );
