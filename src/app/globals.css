@@ -119,4 +119,13 @@
   body {
     @apply bg-background text-foreground;
   }
+  h1 {
+    @apply text-6xl font-extrabold;
+  }
+  h2 {
+    @apply text-5xl font-extrabold;
+  }
+  p {
+    @apply opacity-50 max-w-prose;
+  }
 }

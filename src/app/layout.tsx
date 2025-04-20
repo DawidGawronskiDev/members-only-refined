@@ -4,6 +4,7 @@ import "./globals.css";
 import { AuthProvider } from "@/providers/auth";
 import Membership from "@/components/membership";
 import { Toaster } from "@/components/ui/sonner";
+import Header from "@/components/header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <AuthProvider>
-          <Membership />
+          <Header />
           {children}
           <Toaster />
         </AuthProvider>
