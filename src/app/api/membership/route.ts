@@ -80,6 +80,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ data: updatedUser }, { status: 200 });
   } catch (e) {
+    console.error(e);
     return NextResponse.json(
       { error: { message: "Internal server error" } },
       { status: 500 }

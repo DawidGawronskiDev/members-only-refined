@@ -10,17 +10,20 @@ import {
 import { Button } from "@/components/ui/button";
 import MembershipForm from "@/components/membership-form";
 import { DialogTitle } from "@radix-ui/react-dialog";
+import { KeyRound } from "lucide-react";
 
 export default function Membership() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Get Membership</Button>
+        <Button variant="ghost" className="rounded-full">
+          Get Membership <KeyRound />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Get Membership</DialogTitle>
-          <DialogDescription>Key is "membership"</DialogDescription>
+          <DialogDescription>Key is &quot;membership&quot;</DialogDescription>
         </DialogHeader>
         <MembershipForm />
       </DialogContent>
