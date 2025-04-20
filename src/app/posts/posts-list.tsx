@@ -10,7 +10,7 @@ export default function PostsList() {
   if (error) return "Error";
 
   return (
-    <ul className="sm:columns-2 md:columns-3 space-y-4">
+    <ul className="sm:columns-2 md:columns-3 space-y-4 w-full">
       {posts && posts.map((post) => <Post key={post.id} post={post} />)}
     </ul>
   );

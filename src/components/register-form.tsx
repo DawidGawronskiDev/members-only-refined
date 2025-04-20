@@ -25,8 +25,10 @@ const formSchema = z
     path: ["confirmPassword"],
   });
 
+type RegisterFormValues = z.infer<typeof formSchema>;
+
 export default function RegisterForm() {
-  const form = useForm({
+  const form = useForm<RegisterFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "",
@@ -35,7 +37,7 @@ export default function RegisterForm() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = (values: RegisterFormValues) => {
     console.log(values);
   };
 

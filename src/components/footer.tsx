@@ -3,7 +3,7 @@ import MaxWidthContanier from "./max-width-container";
 
 export default function Footer() {
   return (
-    <footer>
+    <footer className="">
       <MaxWidthContanier>
         <div className="flex flex-col items-center justify-center gap-4">
           <Logo />
