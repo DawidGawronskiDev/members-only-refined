@@ -12,7 +12,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
@@ -31,8 +30,6 @@ const formSchema = z.object({
 type LoginFormValues = z.infer<typeof formSchema>;
 
 export default function LoginForm() {
-  const router = useRouter();
-
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -46,10 +43,9 @@ export default function LoginForm() {
       await signIn("credentials", {
         username: values.username,
         password: values.password,
+        redirect: true,
+        callbackUrl: "/",
       });
-      router.push("/");
-      toast.success("Account created successfully. You are now logged in.");
-      return;
     } catch (e) {
       console.log(e);
       toast.error("Something went wrong. Please try again.");
