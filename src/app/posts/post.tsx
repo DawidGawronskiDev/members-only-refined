@@ -3,7 +3,7 @@ import { PostWithAuthor } from "@/types";
 
 export default function Post({ post }: { post: PostWithAuthor }) {
   return (
-    <li className="p-2 rounded-md break-inside-avoid-column border border-background/10 bg-background backdrop-blur supports-[backdrop-filter]:bg-background/5">
+    <li className="p-2 rounded-md break-inside-avoid-column border border-background/10 bg-background backdrop-blur supports-[backdrop-filter]:bg-background/10 shadow-sm">
       <div className="flex items-start justify-start">
         <Avatar n={post.id} />
         <div className="ml-2">

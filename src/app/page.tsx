@@ -136,14 +136,14 @@ export default async function Home() {
                   <p>Not everyone gets in.</p>
                 </div>
               </div>
-              <div className="text-center flex flex-col items-center justify-center">
+              <div className="text-center flex flex-col items-center justify-center ">
                 <Shield width={24} height={24} />
                 <div className="mt-1">
                   <span className="font-bold">Privacy First</span>
                   <p>No public visibility, no distractions.</p>
                 </div>
               </div>
-              <div className="text-center flex flex-col items-center justify-center">
+              <div className="text-center flex flex-col items-center justify-center ">
                 <Users width={24} height={24} />
                 <div className="mt-1">
                   <span className="font-bold">Community Focused</span>
