@@ -11,13 +11,21 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
+
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 const formSchema = z
   .object({
     username: z.string().min(1, { message: "Username is required" }).max(64),
-    password: z.string().min(8, { message: "Password is required" }),
+    password: z.string().min(8).regex(passwordRegex, {
+      message:
+        "Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
+    }),
     confirmPassword: z.string().min(8),
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
@@ -28,6 +36,8 @@ const formSchema = z
 type RegisterFormValues = z.infer<typeof formSchema>;
 
 export default function RegisterForm() {
+  const router = useRouter();
+
   const form = useForm<RegisterFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,8 +47,39 @@ export default function RegisterForm() {
     },
   });
 
-  const onSubmit = (values: RegisterFormValues) => {
-    console.log(values);
+  const onSubmit = async (values: RegisterFormValues) => {
+    try {
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success("User created successfully");
+        router.push("/api/auth/signin?callbackUrl=/");
+        return;
+      } else {
+        toast.error(data.error.message);
+        form.setError("root", {
+          type: "manual",
+          message: data.error.message,
+        });
+        return;
+      }
+    } catch (e) {
+      console.log(e);
+      toast.error("Something went wrong. Please try again later.");
+      form.setError("root", {
+        type: "manual",
+        message: "Something went wrong. Please try again later.",
+      });
+      return;
+    }
   };
 
   return (
@@ -84,6 +125,11 @@ export default function RegisterForm() {
           isSubmitting={form.formState.isSubmitting}
           content="Sign Up"
         />
+        {form.formState.errors.root?.message && (
+          <p className="text-red-500 text-sm text-center">
+            {form.formState.errors.root.message}
+          </p>
+        )}
       </form>
     </Form>
   );
