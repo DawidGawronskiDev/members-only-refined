@@ -2,7 +2,8 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export default function SignInButton() {
   const session = useSession();
@@ -12,8 +13,10 @@ export default function SignInButton() {
   }
 
   return (
-    <Button variant="ghost" onClick={() => signIn()} className="rounded-full">
-      Sign In <ArrowRight />
-    </Button>
+    <Link href={"/signin"}>
+      <Button variant="ghost" className="rounded-full">
+        Sign In <ArrowRight />
+      </Button>
+    </Link>
   );
 }
