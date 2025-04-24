@@ -36,8 +36,11 @@ export default function PostForm() {
         body: JSON.stringify(values),
       });
 
+      const data = await response.json();
+
       if (!response.ok) {
-        throw new Error();
+        toast.error(data.error.message || "Oops!");
+        return;
       }
 
       refetch();
