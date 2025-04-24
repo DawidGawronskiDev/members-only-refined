@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { userSchema } from "@/schemas";
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,40 +9,19 @@ export async function POST(request: NextRequest) {
      * * Get the request body
      */
     const body = await request.json();
-    const { username, password } = body;
-    /**
-     * * Check if the username and password are provided
-     */
-    if (!username || !password) {
-      return NextResponse.json(
-        { error: { message: "Username and password are required" } },
-        { status: 400 }
-      );
-    }
 
     /**
-     * Check if the password is strong enough
-     * - At least 8 characters long
-     * - At least 1 uppercase letter
-     * - At least 1 lowercase letter
-     * - At least 1 number
-     * - At least 1 special character
-     * - No spaces
-     *
+     * Validate the request body
      */
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(password)) {
+    const validation = userSchema.safeParse(body);
+
+    if (!validation.success) {
       return NextResponse.json(
-        {
-          error: {
-            message:
-              "Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
-          },
-        },
+        { error: { message: validation.error.message } },
         { status: 400 }
       );
     }
+    const { username, password } = validation.data;
 
     /**
      * Hash the password

@@ -23,7 +23,9 @@ export default function Membership() {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Get Membership</DialogTitle>
-          <DialogDescription>Key is &quot;membership&quot;</DialogDescription>
+          <DialogDescription>
+            Key is &quot;theodinproject&quot;
+          </DialogDescription>
         </DialogHeader>
         <MembershipForm />
       </DialogContent>

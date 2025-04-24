@@ -10,36 +10,20 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { userCreateSchema } from "@/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 
-const passwordRegex =
-  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-
-const formSchema = z
-  .object({
-    username: z.string().min(1, { message: "Username is required" }).max(64),
-    password: z.string().min(8).regex(passwordRegex, {
-      message:
-        "Password must be at least 8 characters long, contain at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character",
-    }),
-    confirmPassword: z.string().min(8),
-  })
-  .refine(({ password, confirmPassword }) => password === confirmPassword, {
-    message: "Passwords do not match",
-    path: ["confirmPassword"],
-  });
-
-type RegisterFormValues = z.infer<typeof formSchema>;
+type RegisterFormValues = z.infer<typeof userCreateSchema>;
 
 export default function RegisterForm() {
   const router = useRouter();
 
   const form = useForm<RegisterFormValues>({
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(userCreateSchema),
     defaultValues: {
       username: "",
       password: "",

@@ -71,8 +71,7 @@ const COOLDOWN_TIME = 30000; // 30 seconds
 
 export async function POST(request: NextRequest) {
   try {
-    const userIp =
-      request.headers.get("x-forwarded-for") || request.socket?.remoteAddress;
+    const userIp = request.headers.get("x-forwarded-for");
 
     if (!userIp) {
       return NextResponse.json(
