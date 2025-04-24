@@ -115,12 +115,13 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    /* outline: 1px solid rgba(255, 0, 0, 0.5); */
   }
   body {
     background: var(--background);
     color: var(--color-foreground);
     background-image: url("/bg.png");
-    background-position: 50% 80%;
+    background-position: center -500px;
     background-repeat: no-repeat;
   }
   h1 {

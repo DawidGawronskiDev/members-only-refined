@@ -1,5 +1,12 @@
 "use client";
 
+export const getCircleSegment = (n: number) => {
+  const segments = 12;
+  const normalized = ((n % 360) + 360) % 360;
+  const segmentSize = 360 / segments;
+  return Math.floor(normalized / segmentSize);
+};
+
 export const createAvatarColor = ({
   h,
   s = 50,
@@ -11,7 +18,7 @@ export const createAvatarColor = ({
   l: number;
   a?: number;
 }) => {
-  return `hsla(${h}deg, ${s}%, ${l}%, ${a})`;
+  return `hsla(${getCircleSegment(h)}deg, ${s}%, ${l}%, ${a})`;
 };
 
 export const createAvatarBackground = (h: number) => {

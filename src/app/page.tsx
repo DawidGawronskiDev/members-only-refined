@@ -1,7 +1,7 @@
+import Features from "@/components/features";
 import MaxWidthContanier from "@/components/max-width-container";
 import SignInButton from "@/components/signin-button";
 import { Testimonials } from "@/components/testimonials";
-import { Shield, Star, Users } from "lucide-react";
 
 export default async function Home() {
   return (
@@ -13,8 +13,7 @@ export default async function Home() {
               <h1>Welcome to Members Only</h1>
               <p className="opacity-50 mt-1">
                 A private space where only authorized users can read and share
-                messages. Create an account, enter your access key, and join the
-                conversation.
+                messages.
               </p>
             </div>
             <div className="flex items-center justify-center gap-4">
@@ -129,35 +128,19 @@ export default async function Home() {
         <MaxWidthContanier>
           <div className="space-y-16">
             <h2 className="text-center">Why Join?</h2>
-            <div className="flex flex-col gap-16 md:flex-row items-center md:items-start justify-between *:flex-1">
-              <div className="text-center flex flex-col items-center justify-center">
-                <Star width={24} height={24} />
-                <div className="mt-1">
-                  <span className="font-bold">Exclusive Access</span>
-                  <p>Not everyone gets in.</p>
-                </div>
-              </div>
-              <div className="text-center flex flex-col items-center justify-center ">
-                <Shield width={24} height={24} />
-                <div className="mt-1">
-                  <span className="font-bold">Privacy First</span>
-                  <p>No public visibility, no distractions.</p>
-                </div>
-              </div>
-              <div className="text-center flex flex-col items-center justify-center ">
-                <Users width={24} height={24} />
-                <div className="mt-1">
-                  <span className="font-bold">Community Focused</span>
-                  <p>Quality over quantity.</p>
-                </div>
-              </div>
-            </div>
+            <Features />
           </div>
         </MaxWidthContanier>
       </section>
       <section>
         <MaxWidthContanier>
-          <Testimonials />
+          <div className="space-y-16">
+            <div className="text-center flex flex-col items-center justify-center">
+              <h2>What Our Members Say</h2>
+              <p>Trusted by Professionals & Thinkers</p>
+            </div>
+            <Testimonials />
+          </div>
         </MaxWidthContanier>
       </section>
     </main>
