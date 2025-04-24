@@ -1,7 +1,6 @@
 "use client";
 
-export const getCircleSegment = (n: number) => {
-  const segments = 12;
+export const getCircleSegment = (n: number, segments: number = 8) => {
   const normalized = ((n % 360) + 360) % 360;
   const segmentSize = 360 / segments;
   return Math.floor(normalized / segmentSize);

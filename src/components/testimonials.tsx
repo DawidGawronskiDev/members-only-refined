@@ -68,12 +68,20 @@ const Testimonials = () => {
   );
 };
 
-const Testimonial = ({ quote, author }: { quote: string; author: string }) => {
+const Testimonial = ({
+  quote,
+  author,
+  key,
+}: {
+  quote: string;
+  author: string;
+  key: number;
+}) => {
   return (
     <div className="flex flex-col gap-2 border border-gray-900/10 dark:border-gray-100/10 p-4 rounded-2xl dark:bg-gray-100/5 shadow-sm">
       <blockquote className="font-extralight">{quote}</blockquote>
       <div className="flex gap-3">
-        <Avatar n={Math.floor(Math.random() * 360)} />
+        <Avatar n={key} />
         <p className="opacity-100 font-bold">{author}</p>
       </div>
     </div>
