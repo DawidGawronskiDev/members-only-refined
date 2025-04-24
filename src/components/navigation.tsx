@@ -12,9 +12,7 @@ export default function Navigation() {
 
   return (
     <nav>
-      {!user?.isMember ? (
-        <Membership />
-      ) : (
+      {user && user.isMember && (
         <ul>
           <li>
             <Link
@@ -31,6 +29,7 @@ export default function Navigation() {
           </li>
         </ul>
       )}
+      {user && !user.isMember && <Membership />}
     </nav>
   );
 }
