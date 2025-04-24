@@ -1,5 +1,6 @@
 import MaxWidthContanier from "@/components/max-width-container";
 import SignInButton from "@/components/signin-button";
+import { Testimonials } from "@/components/testimonials";
 import { Shield, Star, Users } from "lucide-react";
 
 export default async function Home() {
@@ -152,6 +153,11 @@ export default async function Home() {
               </div>
             </div>
           </div>
+        </MaxWidthContanier>
+      </section>
+      <section>
+        <MaxWidthContanier>
+          <Testimonials />
         </MaxWidthContanier>
       </section>
     </main>
