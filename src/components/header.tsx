@@ -8,8 +8,8 @@ import Auth from "./auth";
 import { useEffect, useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
-
 import { Settings } from "lucide-react";
+
 export default function Header() {
   const [isMobile, setIsMobile] = useState(false);
 

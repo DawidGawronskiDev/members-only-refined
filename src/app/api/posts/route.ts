@@ -1,9 +1,9 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { User } from "@/app/generated/prisma";
 import { postSchema } from "@/schemas";
+import { authOptions } from "@/lib/auth";
 
 export async function GET() {
   /**
