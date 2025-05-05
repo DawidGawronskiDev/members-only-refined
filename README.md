@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Members Only
 
-## Getting Started
+Welcome to **Members Only**, a private space where only authorized users can read and share messages. This platform is designed to foster meaningful conversations in a secure and exclusive environment.
 
-First, run the development server:
+## Screenshots
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Home Page
+![Home Page](/screenshots/home-page.png)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Posts Page
+![Posts Page](/screenshots/posts-page.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Posts
+![Sign Up Page](/screenshots/signup-page.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
+
+- **Private Messaging**: Only authorized users can access and share messages.
+- **Secure Authentication**: Powered by NextAuth for secure user login and session management.
+- **Responsive Design**: Optimized for all devices.
+- **Dynamic Content**: Real-time updates for a seamless experience.
+
+## Tech Stack
+
+- **[Next.js](https://nextjs.org/)**: React framework for building server-rendered and static web applications.
+- **TypeScript**: Strongly typed programming language for safer and more maintainable code.
+- **[Prisma](https://www.prisma.io/)**: ORM for database management and type-safe queries.
+- **[NextAuth](https://next-auth.js.org/)**: Authentication library for secure user login and session management.
+- **Tailwind CSS**: Utility-first CSS framework for styling.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+To learn more about the technologies used in this project, check out the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [NextAuth Documentation](https://next-auth.js.org/getting-started/introduction)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## License
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License.
