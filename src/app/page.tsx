@@ -38,6 +38,41 @@ export function SectionHero() {
   );
 }
 
+const steps = [
+  {
+    title: "Sign In",
+    description: "Create an account or sign in to your existing one.",
+  },
+  {
+    title: "Enter Your Key",
+    description: "Use your access key to unlock the space.",
+  },
+  {
+    title: "Start Engaging",
+    description: "Read and share messages with the community.",
+  },
+];
+
+export function Step({
+  step,
+}: {
+  step: { title: string; description: string; index: number };
+}) {
+  const { index, title, description } = step;
+
+  return (
+    <li className="flex items-center gap-4">
+      <div className="w-full max-w-16 aspect-square rounded-full border border-foreground border-dashed flex items-center justify-center">
+        <span className="font-bold">{index}</span>
+      </div>
+      <div>
+        <span className="text-lg font-bold">{title}</span>
+        <p>{description}</p>
+      </div>
+    </li>
+  );
+}
+
 export function SectionHowItWorks() {
   return (
     <section>
@@ -46,33 +81,9 @@ export function SectionHowItWorks() {
           <div className="w-full">
             <h2>How It Works?</h2>
             <ul className="space-y-8 mt-8">
-              <li className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full border border-foreground border-dashed flex items-center justify-center">
-                  <span className="font-bold">1</span>
-                </div>
-                <div>
-                  <span className="text-lg font-bold">Sign In</span>
-                  <p>The quick brown fox jumps over the lazy dog.</p>
-                </div>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full border border-foreground border-dashed flex items-center justify-center">
-                  <span className="font-bold">2</span>
-                </div>
-                <div>
-                  <span className="text-lg font-bold">Enter Your Key</span>
-                  <p>Use your access key to unlock the space.</p>
-                </div>
-              </li>
-              <li className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-full border border-foreground border-dashed flex items-center justify-center">
-                  <span className="font-bold">3</span>
-                </div>
-                <div>
-                  <span className="text-lg font-bold">Start Engaging</span>
-                  <p>Read and share messages with the community.</p>
-                </div>
-              </li>
+              {steps.map((step, index) => (
+                <Step key={index} step={{ ...step, index: index + 1 }} />
+              ))}
             </ul>
           </div>
           <div className="w-full hidden lg:block">
