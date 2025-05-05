@@ -1,9 +1,10 @@
-import Features from "@/components/features";
-import MaxWidthContanier from "@/components/max-width-container";
-import SignInButton from "@/components/signin-button";
-import { Testimonials } from "@/components/testimonials";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import {
+  SectionFeatures,
+  SectionHero,
+  SectionHowItWorks,
+  SectionJoin,
+  SectionTestimonials,
+} from "@/components/sections";
 
 export default async function Home() {
   return (
@@ -16,6 +17,7 @@ export default async function Home() {
     </main>
   );
 }
+<<<<<<< HEAD
 
 export function SectionHero() {
   return (
@@ -210,3 +212,5 @@ export function SectionJoin() {
     </section>
   );
 }
+=======
+>>>>>>> 67b46c5d3fe4680c31c75177d030687d41d7e620

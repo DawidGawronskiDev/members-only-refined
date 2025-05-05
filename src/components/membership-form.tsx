@@ -53,7 +53,8 @@ export default function MembershipForm() {
 
       await update(result.data);
       toast.success("Thanks for being a member!");
-    } catch (error) {
+    } catch (e) {
+      console.log(e);
       toast.error("Oops! Something went wrong...");
     }
   };

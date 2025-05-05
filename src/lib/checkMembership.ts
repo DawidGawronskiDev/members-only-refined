@@ -1,9 +1,9 @@
 "use server";
 
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { User } from "@/app/generated/prisma";
 import { getServerSession } from "next-auth";
 import prisma from "./prisma";
+import { authOptions } from "./auth";
 
 export default async function checkMembership() {
   try {

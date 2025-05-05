@@ -1,9 +1,9 @@
 import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { User } from "@/app/generated/prisma";
 import { postSchema } from "@/schemas";
+import { authOptions } from "@/lib/auth";
 
 export async function GET() {
   /**
@@ -66,38 +66,8 @@ export async function GET() {
   return NextResponse.json({ status: 200, data: posts });
 }
 
-const cooldowns = new Map<string, number>();
-const COOLDOWN_TIME = 30000; // 30 seconds
-
 export async function POST(request: NextRequest) {
   try {
-    const userIp = request.headers.get("x-forwarded-for");
-
-    if (!userIp) {
-      return NextResponse.json(
-        { error: { message: "IP address not found" } },
-        { status: 400 }
-      );
-    }
-
-    const lastRequestTime = cooldowns.get(userIp);
-    const now = Date.now();
-
-    if (lastRequestTime && now - lastRequestTime < COOLDOWN_TIME) {
-      return NextResponse.json(
-        {
-          error: {
-            message: `Slow down! Please wait ${Math.ceil(
-              (COOLDOWN_TIME - (now - lastRequestTime)) / 1000
-            )} seconds before making another request.`,
-          },
-        },
-        { status: 429 }
-      );
-    }
-
-    cooldowns.set(userIp, now);
-
     /**
      * Valide session
      */
